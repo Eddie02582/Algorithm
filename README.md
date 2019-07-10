@@ -11,12 +11,26 @@
     <th>時間複雜度</th>
     <th>空間複雜度</th>
 </tr>
-
 <tr>
-    <th>選擇排序法</th>
-    <th>O(n<super>2</super>)</th>
-    <th>O(1)</th>
+    <td>氣泡排序法</td>
+    <td>O(n<sup>2</sup>)</td>
+    <td>O(1)</td>
 </tr>
 
+<tr>
+    <th>選擇排序法</td>
+    <th>O(n<sup>2</sup>)</td>
+    <th>O(1)</td>
+</tr>
 
-</table>
+<tr>
+    <td>插入排序法</td>
+    <td>O(n<super>2</super>)</td>
+    <td>O(1)</td>
+</tr>
+
+<tr>
+    <td>計數排序法</td>
+    <td>O(n + m)</td>
+    <td>O(n + m)</td>
+</tr>
