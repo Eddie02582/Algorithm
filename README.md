@@ -18,9 +18,9 @@
 </tr>
 
 <tr>
-    <th>選擇排序法</td>
-    <th>O(n<sup>2</sup>)</td>
-    <th>O(1)</td>
+    <td>選擇排序法</td>
+    <td>O(n<sup>2</sup>)</td>
+    <td>O(1)</td>
 </tr>
 
 <tr>
