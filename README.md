@@ -12,7 +12,7 @@
     <th>空間複雜度</th>
 </tr>
 <tr>
-    <td>氣泡排序法</td>
+    <td><a href="https://github.com/Eddie02582/Algorithm/tree/master/Sort/Bubble%20Sort">氣泡排序法</a></td>
     <td>O(n<sup>2</sup>)</td>
     <td>O(1)</td>
 </tr>
