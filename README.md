@@ -17,8 +17,9 @@
     <td>O(1)</td>
 </tr>
 
+
 <tr>
-    <td>選擇排序法</td>
+    <td><a href="https://github.com/Eddie02582/Algorithm/tree/master/Sort/Select%20Sort">選擇排序法</a></td>
     <td>O(n<sup>2</sup>)</td>
     <td>O(1)</td>
 </tr>

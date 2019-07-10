@@ -59,25 +59,26 @@ public int[] select_sort(int[] arr)
 ## Java
 
 ``` java
- public int[] select_sort(int[] arr)
-{
-    Integer temp = 0;
-    Boolean bSwap = false ;        
+public int[] select_sort(int[] arr)
+{       
+    int index = 0 ;
+    int temp = 0 ;   
     for (int i = 0; i < arr.length; i++)
     {
-        bSwap = false;
-        for (int j = 0; j < arr.length - i - 1 ; j++)
+        index = i ;
+        for (int j = i; j < arr.length  ; j++)
         {                    
-            if (arr[j] > arr[j + 1])
+            if (arr[j] < arr[index])
             {
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-                bSwap = true;
+                index = j ;                  
             }
         }
-        if (!bSwap)
-            return arr;
+        if (index != i)
+        {   
+            temp = arr[i] ;
+            arr[i] = arr[index];
+            arr[index]= temp;  
+        }  
 
     }
     return arr;
