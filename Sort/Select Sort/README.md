@@ -58,7 +58,7 @@ public int[] select_sort(int[] arr)
 
 ## Java
 
-``` java
+``` Java
 public int[] select_sort(int[] arr)
 {       
     int index = 0 ;
