@@ -10,84 +10,33 @@
 動畫可以參考<a href ="https://visualgo.net/en/sorting">visualgo </a>
 
 
+## Example 
+假設陣列範圍0-9，陣列為 [1, 4, 1, 2, 7, 5, 2]
+
 ## Python
 
 
-
-
 ``` python
-
-def select_sort(array):    
-    for i in range(len(array)):        
-        index = i
-        for j in range(i + 1,len(array)):
-            if array[j] < array[index]:
-                index = j                
-        array[i],array[index] = array[index],array[i]   
-    return array
-```
-
-
-## C sharp
-
-``` csharp
-public int[] select_sort(int[] arr)
-{
-    int index = 0 ;
-    int temp = 0;
-    for (int i = 0; i < arr.Length - 1; i++)
-    {
-        index = i;
-        for (int j = i + 1; j < arr.Length ; j++)
-        {
-            if (arr[j] < arr[index])
-            {
-                index = j;                   
-            }
-        }
-        if (index != i)
-        {
-            temp = arr[index];
-            arr[index] = arr[i];
-            arr[i] = temp;
-        }
-        
-    }
-    return arr;
-}
-```
-
-## Java
-
-``` Java
-public int[] select_sort(int[] arr)
-{       
-    int index = 0 ;
-    int temp = 0 ;   
-    for (int i = 0; i < arr.length - 1; i++)
-    {
-        index = i ;
-        for (int j = i + 1; j < arr.length  ; j++)
-        {                    
-            if (arr[j] < arr[index])
-            {
-                index = j ;                  
-            }
-        }
-        if (index != i)
-        {   
-            temp = arr[i] ;
-            arr[i] = arr[index];
-            arr[index]= temp;  
-        }  
-
-    }
-    return arr;
-}
+def counting_sort(array,max_value):
+    counts = [0] * max_value
+    
+    for n in array:
+       counts[n] += 1 
+    result = []
+    for i,count in enumerate(counts):
+        j = 0 
+        while j < count:
+            result.append(i)
+            j += 1   
+    return result
 
 ```
 
 
+
+## Example 
+陣列為 [100, 93, 97, 92, 96, 99, 92, 89, 93, 97, 90, 94, 92, 95] </br>
+此時不知道範圍須先找出最大最小值</br>
 
 
 
