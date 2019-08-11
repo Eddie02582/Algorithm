@@ -4,10 +4,10 @@ class Sort
     {
         int index = 0 ;
         int temp = 0;
-        for (int i = 0; i < arr.Length; i++)
+        for (int i = 0; i < arr.Length - 1; i++)
         {
             index = i;
-            for (int j = i; j < arr.Length ; j++)
+            for (int j = i + 1; j < arr.Length ; j++)
             {
                 if (arr[j] < arr[index])
                 {

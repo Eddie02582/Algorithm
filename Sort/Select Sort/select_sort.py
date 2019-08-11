@@ -1,8 +1,8 @@
 def select_sort(array):    
-    for i in range(0,len(array)):        
+    for i in range(len(array)):        
         index = i
-        for j in range(i,len(array)):
-            if array[j] < array[index]:
+        for j in range(i + 1,len(array)):
+            if array[index] > array[j]:
                 index = j                
         array[i],array[index] = array[index],array[i]   
     return array
