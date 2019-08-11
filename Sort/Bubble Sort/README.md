@@ -36,7 +36,7 @@ def bubble_sort_flag(arr):
                 arr[j],arr[j + 1] = arr[j + 1],arr[j]
                 flag = True
         if not flag:
-            return array
+            break
     return arr
 ```
 
@@ -61,7 +61,7 @@ public int[] bubble_sort(int[] arr)
             }
         }
         if (!bSwap)
-            return arr;
+            break;
 
     }
     return arr;

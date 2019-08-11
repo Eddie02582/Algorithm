@@ -18,7 +18,7 @@ class Sort
                 }
             }
             if (!bSwap)
-                return arr;
+                break;
 
         }
         return arr;

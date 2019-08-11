@@ -1,28 +1,26 @@
 
      
 def bubble_sort(array):
-    count = 0
-    for i in range(0,len(array)):
-        for j in range(0,len(array)-i-1):
-            if array[j] > array[j+1]:
-                array[j],array[j + 1] = array[j + 1],array[j]
-            count += 1
-    print (count)
+    
+    for i in range(len(array)):
+        for j in range(len(array)-i-1):
+            if array[j] > array[j + 1]:
+                array[j],array[j + 1] = array[j + 1],array[j]           
+   
     return array
     
 def bubble_sort_flag(array):
-    count = 0
+    
     for i in range(0,len(array)):
         flag = False 
         for j in range(0,len(array) - i - 1):
             if array[j] > array[j + 1]:
                 array[j],array[j + 1] = array[j + 1],array[j]
                 flag = True
-            count += 1
-        if not flag :
-            print (count)
-            return array
-    print (count)
+            
+        if not flag :          
+            break
+
     return array    
     
 
