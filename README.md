@@ -25,7 +25,7 @@
 </tr>
 
 <tr>
-    <td>插入排序法</td>
+    <td> <a href = "https://github.com/Eddie02582/Algorithm/tree/master/Sort/Insert%20Sort"> 插入排序法</a></td>
     <td>O(n<super>2</super>)</td>
     <td>O(1)</td>
 </tr>
