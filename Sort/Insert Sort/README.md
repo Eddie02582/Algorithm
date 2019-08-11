@@ -1,8 +1,8 @@
-# Select Sort
+# Insert Sort
 
 <ul>
-    <li>從未排序的數列中找到最小的元素。</li>
-    <li>將此元素與已排序部分的尾端元素進行交換</li>
+    <li>從未排序數列取出一元素</li>
+    <li>由後往前和已排序數列元素比較，直到遇到不大於自己的元素並插入此元素之後；若都沒有則插入在最前面</li>
     <li>重複進行1,2的動作，直到未排序數列全部處理完成。</li>
 </ul>
 
@@ -16,75 +16,43 @@
 
 ``` python
 
-def select_sort(array):    
-    for i in range(0,len(array)):        
-        index = i
-        for j in range(i,len(array)):
-            if array[j] < array[index]:
-                index = j                
-        array[i],array[index] = array[index],array[i]   
-    return array
+def insert_sort(array):
+    count = 0 
+    for i in range(1,len(array)): 
+        n = array[i]
+        j = i - 1
+
+        while j >= 0 and n < array[j]:            
+            array [j + 1] = array[j]
+            j = j -1        
+        array [j + 1] = n         
+    return array   
 ```
 
 
 ## C sharp
 
 ``` csharp
-public int[] select_sort(int[] arr)
+class Sort
 {
-    int index = 0 ;
-    int temp = 0;
-    for (int i = 0; i < arr.Length; i++)
+    public int[] select_sort(int[] arr)
     {
-        index = i;
-        for (int j = i; j < arr.Length ; j++)
+        int index = 0 ;
+        int temp = 0;
+        for (int i = 0; i < arr.Length; i++)
         {
-            if (arr[j] < arr[index])
-            {
-                index = j;                   
-            }
+            j = i -1 ;
+            int n = array[i]
+            while j >= 0 and array[j] > n:
+                array[j + 1] = array[j]
+                j -= 1
+            array[j + 1] = n
         }
-        if (index != i)
-        {
-            temp = arr[index];
-            arr[index] = arr[i];
-            arr[i] = temp;
-        }
-        
-    }
-    return arr;
+        return arr;
+    }       
 }
 ```
 
-## Java
-
-``` Java
-public int[] select_sort(int[] arr)
-{       
-    int index = 0 ;
-    int temp = 0 ;   
-    for (int i = 0; i < arr.length; i++)
-    {
-        index = i ;
-        for (int j = i; j < arr.length  ; j++)
-        {                    
-            if (arr[j] < arr[index])
-            {
-                index = j ;                  
-            }
-        }
-        if (index != i)
-        {   
-            temp = arr[i] ;
-            arr[i] = arr[index];
-            arr[index]= temp;  
-        }  
-
-    }
-    return arr;
-}
-
-```
 
 
 

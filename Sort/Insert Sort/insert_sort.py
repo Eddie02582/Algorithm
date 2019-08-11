@@ -4,12 +4,10 @@ def insert_sort(array):
         n = array[i]
         j = i - 1
 
-        while j >= 0 and n < array[j] :
-            count += 1
+        while j >= 0 and n < array[j]:            
             array [j + 1] = array[j]
-            j = j -1        
-        array [j + 1] = n
-        print (j + 1)    
+            j -= 1         
+        array [j + 1] = n         
     return array   
 
 
