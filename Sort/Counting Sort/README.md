@@ -1,12 +1,19 @@
-# Insert Sort
+# Counting Sort
 
+## 特點
+<ul>
+    <li>非in place </li>
+    <li>須知道值範圍</li>    
+</ul>
 
 ## Algorithm 
+
 <ul>
-    <li>從未排序數列取出一元素</li>
-    <li>由後往前和已排序數列元素比較，直到遇到不大於自己的元素並插入此元素之後；若都沒有則插入在最前面</li>
-    <li>重複進行1,2的動作，直到未排序數列全部處理完成。</li>
+    <li>建立一個陣列計數</li>
+    <li>迴圈建立新陣列</li>    
 </ul>
+
+
 
 動畫可以參考<a href ="https://visualgo.net/en/sorting">visualgo </a>
 

@@ -1,5 +1,6 @@
 # Select Sort
 
+## Algorithm 
 <ul>
     <li>從未排序的數列中找到最小的元素。</li>
     <li>將此元素與已排序部分的尾端元素進行交換</li>
