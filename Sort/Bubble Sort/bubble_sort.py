@@ -11,9 +11,9 @@ def bubble_sort(array):
     
 def bubble_sort_flag(array):
     
-    for i in range(0,len(array)):
+    for i in range(len(array)):
         flag = False 
-        for j in range(0,len(array) - i - 1):
+        for j in range(len(array) - i - 1):
             if array[j] > array[j + 1]:
                 array[j],array[j + 1] = array[j + 1],array[j]
                 flag = True
