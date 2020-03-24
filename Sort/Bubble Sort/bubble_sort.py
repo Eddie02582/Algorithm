@@ -20,11 +20,9 @@ def bubble_sort_flag(array):
             
         if not flag :          
             break
-
     return array    
-    
 
-    
+
     
     
 assert bubble_sort( [18, 16, 13, 19, 15, 14, 17] ) ==  [13, 14, 15, 16, 17, 18, 19] 
