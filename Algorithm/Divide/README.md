@@ -22,7 +22,8 @@ Example
     <li><a href = "">大整數乘法</a></li>
     <li><a href = "">Strassen矩陣乘法</a></li>
     <li><a href = "">棋盤覆蓋</a></li>
-    <li><a href = "">合并排序</a></li>
+    <li><a href = "">Longest Common Prefix</a></li>  
+    <li><a href = "https://github.com/Eddie02582/Algorithm/tree/master/Sort/Merge%20Sort">Merge Sort</a></li>
     <li><a href = "https://github.com/Eddie02582/Algorithm/tree/master/Sort/Quick%20Sort">Quick Sort</a></li>
     <li><a href = "">線性時間選擇</a></li>
     <li><a href = "">最接近點對問題</a></li>
