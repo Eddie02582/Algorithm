@@ -24,7 +24,7 @@ Example
     <li><a href = "">棋盤覆蓋</a></li>
     <li><a href = "https://github.com/Eddie02582/Algorithm/blob/master/Algorithm/Divide/Longest%20Common%20Prefix/README.md">Longest Common Prefix</a></li>  
     <li><a href = "https://github.com/Eddie02582/Algorithm/tree/master/Sort/Merge%20Sort">Merge Sort</a></li>
-    <li><a href = "https://github.com/Eddie02582/Algorithm/tree/master/Sort/Merge%20Sort">Maximum Subarray</a></li>
+    <li><a href = "https://github.com/Eddie02582/Algorithm/tree/master/Algorithm/Divide/Maximum%20Subarray">Maximum Subarray</a></li>
     <li><a href = "https://github.com/Eddie02582/Algorithm/tree/master/Sort/Quick%20Sort">Quick Sort</a></li>
     <li><a href = "">線性時間選擇</a></li>
     <li><a href = "">最接近點對問題</a></li>
