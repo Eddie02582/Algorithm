@@ -1,7 +1,11 @@
 # Algorithm
 計錄學習演算法
 
-
+<ul>
+    <li><a href="https://github.com/Eddie02582/Algorithm/tree/master/Algorithm/Boyer%E2%80%93Moore%20majority%20vote%20algorithm">Boyer–Moore majority vote algorithm</a></li>
+    <li><a href="https://github.com/Eddie02582/Algorithm/tree/master/Algorithm/Divide">Divide</a></li>
+    <li><a href="https://github.com/Eddie02582/Algorithm/tree/master/Algorithm/sieve%20of%20Eratosthenes">Sieve of Eratosthenes</a></li>
+</ul>
 
 ## Sort 
 
@@ -50,8 +54,8 @@
 </tr>
 <tr>
     <td><a href="https://github.com/Eddie02582/Algorithm/tree/master/Sort/Bubble%20Sort">Binary Search</a></td>
-    <td>O(<sub>log</sub>n)</td>
-    <td>O(1)/O(<sub>log</sub>n)</td>
+    <td>O(<sub>log n)</td>
+    <td>O(1)/O(log n)</td>
 </tr>
 
 </table>
