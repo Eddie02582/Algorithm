@@ -14,7 +14,10 @@
     <li>合併</li>
 </ul>
 
-<img src = ""></img>
+圖片取自於geeksforgeeks
+<img src = "https://www.geeksforgeeks.org/wp-content/uploads/Merge-Sort-Tutorial.png"></img>
+
+
 ## Example 
 
 
