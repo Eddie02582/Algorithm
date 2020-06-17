@@ -35,4 +35,36 @@ Explanation: There is no common prefix among the input strings.
 
 
 
+```python
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        if not strs:
+            return ""
+        if len(strs) == 1:
+            return strs[0]          
+        
+        def helper(str1,str2):
+            p = 0
+            s = ""
+            while p < len(str1) and  p <len(str2):
+                if str1[p] != str2[p]:
+                    break              
+                s += str1[p]
+                p += 1            
+            return s
+                
+        
+        mid = len(strs)//2
+        left = strs[:mid]
+        right = strs[mid:]
+        left = self.longestCommonPrefix(left)
+        right = self.longestCommonPrefix(right)
+        s = helper(left,right)
+        return s
+        
 
+sol = Solution()
+input = ["geeksforgeeks", "geeks", "geek", "geezer"]
+sol.longestCommonPrefix(input)
+
+```
