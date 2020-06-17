@@ -20,7 +20,7 @@ Explanation: There is no common prefix among the input strings.
 ```
 
 這題為Leetcode 14.<a href = "https://leetcode.com/problems/maximum-subarray//">Maximum Subarray</a><br>
-解法可以<a href = "https://github.com/Eddie02582/Leetcode/blob/master/014_Longest%20Common%20Prefix.md">參考</a><br>使用動態規劃<br>
+解法可以<a href = "https://github.com/Eddie02582/Leetcode/blob/master/053_Maximum%20Subarray.md">參考</a><br>使用動態規劃<br>
 這邊主要使用分治法解
 
 
