@@ -3,23 +3,16 @@
           
 ## 題目
 ```
-Write a function to find the longest common prefix string amongst an array of strings.
+Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
 
-If there is no common prefix, return an empty string "".
+Example:
 
-Example 1:
-
-    Input: ["flower","flow","flight"]
-    Output: "fl"
-    
- Example 2:
-
-    Input: ["dog","racecar","car"]
-    Output: ""
-Explanation: There is no common prefix among the input strings.
+    Input: [-2,1,-3,4,-1,2,1,-5,4],
+    Output: 6
+    Explanation: [4,-1,2,1] has the largest sum = 6.
 ```
 
-這題為Leetcode 14.<a href = "https://leetcode.com/problems/maximum-subarray//">Maximum Subarray</a><br>
+這題為Leetcode 53.<a href = "https://leetcode.com/problems/maximum-subarray/">Maximum Subarray</a><br>
 解法可以<a href = "https://github.com/Eddie02582/Leetcode/blob/master/053_Maximum%20Subarray.md">參考</a><br>使用動態規劃<br>
 這邊主要使用分治法解
 
