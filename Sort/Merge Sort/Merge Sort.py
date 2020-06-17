@@ -5,27 +5,54 @@ class Sort:
 
         mid = len(arr) // 2
         left = self.mergeSort(arr[:mid])
-        print("left = " + str(left))
-        right = self.mergeSort(arr[mid:])
-        print("right = " + str(right))
+        right = self.mergeSort(arr[mid:])  
         return self.mergeSortedArray(left, right)
 
     #@param A and B: sorted integer array A and B.
     #@return: A new sorted integer array
-    def mergeSortedArray(self, A, B):
+    def mergeSortedArray(self, left, right):
         sortedArray = []
         l ,r = 0 , 0 
-        while l < len(A) and r < len(B):
-            if A[l] < B[r]:
-                sortedArray.append(A[l])
+        while l < len(left) and r < len(right):
+            if left[l] < right[r]:
+                sortedArray.append(left[l])
                 l += 1
             else:
-                sortedArray.append(B[r])
+                sortedArray.append(right[r])
                 r += 1
-        sortedArray += A[l:]
-        sortedArray += B[r:]
+        sortedArray += left[l:]
+        sortedArray += right[r:]
 
         return sortedArray
+
+def mergeSort(arr):          
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = arr[:mid]
+    right = arr[mid:]   
+    mergeSort(left)    
+    mergeSort(right)       
+
+    i,j =0,0
+    while i <len(left) and j <len(right):
+        if left[i] < right[j]:
+            arr[i + j] = left[i]
+            i += 1
+        else:
+            arr[i + j] = right[j]
+            j += 1
+        
+    while i < len(left): 
+        arr[i + j] = left[i]
+        i+= 1      
+      
+    while j < len(right): 
+        arr[i + j] = right[j]
+        j+= 1
+       
+        
+    return arr  
 
 
         

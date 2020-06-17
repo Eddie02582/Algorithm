@@ -20,12 +20,10 @@
     <td>O(n<sup>2</sup>)</td>
     <td>O(1)</td>
 </tr>
-
-
 <tr>
-    <td><a href="https://github.com/Eddie02582/Algorithm/tree/master/Sort/Select%20Sort">選擇排序法</a></td>
-    <td>O(n<sup>2</sup>)</td>
-    <td>O(1)</td>
+    <td>計數排序法</td>
+    <td>O(n + m)</td>
+    <td>O(n + m)</td>
 </tr>
 
 <tr>
@@ -33,13 +31,22 @@
     <td>O(n<sup>2</sup>)</td>
     <td>O(1)</td>
 </tr>
-
 <tr>
-    <td>計數排序法</td>
-    <td>O(n + m)</td>
-    <td>O(n + m)</td>
+    <td> <a href = "https://github.com/Eddie02582/Algorithm/tree/master/Sort/Merge%20Sort">Merge Sort(合併排序法)</a></td>
+    <td>O(nlog n)</td>
+    <td>O(n)</td>
+</tr>
+<tr>
+    <td><a href="https://github.com/Eddie02582/Algorithm/tree/master/Sort/Select%20Sort">選擇排序法</a></td>
+    <td>O(n<sup>2</sup>)</td>
+    <td>O(1)</td>
 </tr>
 
+<tr>
+    <td><a href="https://github.com/Eddie02582/Algorithm/tree/master/Sort/Quick%20Sort">Quick Sort(快速排序法)</a></td>
+    <td>O(nlog n)</td>
+    <td>O(n)/O(log n)</td>
+</tr>
 </table>
 
 

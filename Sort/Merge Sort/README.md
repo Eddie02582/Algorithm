@@ -6,34 +6,53 @@
 
 動畫可以參考<a href ="https://visualgo.net/en/sorting">visualgo </a>
 
+步驟
+<ul>
+    <li>將陣列拆程左邊和右邊</li>
+    <li>左邊呼叫mergeSort</li>
+    <li>右邊呼叫mergeSort</li>
+    <li>合併</li>
+</ul>
 
+<img src = ""></img>
 ## Example 
-假設陣列範圍0-9，陣列為 [1, 4, 1, 2, 7, 5, 2]
+
 
 ## Python
 
 
 ``` python
-def counting_sort(array,max_value):
-    counts = [0] * max_value
-    
-    for n in array:
-       counts[n] += 1 
-    result = []
-    for i,count in enumerate(counts):
-        j = 0 
-        while j < count:
-            result.append(i)
-            j += 1   
-    return result
+def mergeSort(arr):          
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = arr[:mid]
+    right = arr[mid:]   
+    mergeSort(left)    
+    mergeSort(right)       
+
+    i,j =0,0
+    while i <len(left) and j <len(right):
+        if left[i] < right[j]:
+            arr[i + j] = left[i]
+            i += 1
+        else:
+            arr[i + j] = right[j]
+            j += 1
+        
+    while i < len(left): 
+        arr[i + j] = left[i]
+        i+= 1      
+      
+    while j < len(right): 
+        arr[i + j] = right[j]
+        j+= 1
+       
+        
+    return arr  
 
 ```
 
-
-
-## Example 
-陣列為 [100, 93, 97, 92, 96, 99, 92, 89, 93, 97, 90, 94, 92, 95] </br>
-此時不知道範圍須先找出最大最小值</br>
 
 
 

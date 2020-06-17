@@ -11,8 +11,13 @@
     <li>遞迴排序子序列：遞迴地將小於基準值元素的子序列和大於基準值元素的子序列排序。</li>
 </ul>
 
-
-
+這邊取pivot 有幾種取法
+<ul>
+    <li>始終選擇第一個元素</li>
+    <li>始終選擇最後一個元素</li>
+    <li>隨機選擇一個</li>
+    <li>選擇中間的元素</li>
+</ul>
 
 ## Example 
 
@@ -28,6 +33,8 @@ def quicksort(array):
         greater = [i for i in array[1:] if i > pivot]
     return quicksort(less) + [pivot] + quicksort(greater)
 ```
+
+## Example  (Inplace)
 
 
 
