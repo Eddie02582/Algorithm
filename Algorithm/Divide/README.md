@@ -11,34 +11,25 @@
 
 分治法的三個步驟是：
 <ul>
-    <li>分解（Divide）：將原問題分解爲若乾子問題，這些子問題都是原問題規模較小的實例。</li>
-    <li>解決（Conquer）：遞歸地求解各子問題。如果子問題規模足夠小，則直接求解。</li>
-    <li>合併（Combine）：將所有子問題的解合併爲原問題的解。</li>
+    <li>分解(Divide)：將原問題分解爲若乾子問題，這些子問題都是原問題規模較小的實例。</li>
+    <li>解決(Conquer)：遞歸地求解各子問題。如果子問題規模足夠小，則直接求解。</li>
+    <li>合併(Combine)：將所有子問題的解合併爲原問題的解。</li>
 </ul>
 
-## 二分搜索
+Example
+<ul>
+    <li><a href = "https://github.com/Eddie02582/Algorithm/tree/master/Algorithm/Divide/binarySearch">Binary Search</a></li>
+    <li><a href = "">大整數乘法</a></li>
+    <li><a href = "">Strassen矩陣乘法</a></li>
+    <li><a href = "">棋盤覆蓋</a></li>
+    <li><a href = "">合并排序</a></li>
+    <li><a href = "https://github.com/Eddie02582/Algorithm/tree/master/Algorithm/Divide/Quick%20Sort">Quick Sort</a></li>
+    <li><a href = "">線性時間選擇</a></li>
+    <li><a href = "">最接近點對問題</a></li>
+    <li><a href = "">迴圈賽議程表</a></li> 
+    <li><a href = "">漢諾塔</a></li>      
+</ul>    
 
-
-## 大整數乘法
-
-
-## Strassen矩陣乘法
-
-## 棋盤覆蓋
-
-## 合并排序
-
-## 快速排序
-
-## 線性時間選擇
-
-
-## 最接近點對問題
-
-
-## 迴圈賽議程表
-
-## 漢諾塔
 
         
   
