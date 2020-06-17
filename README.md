@@ -54,7 +54,7 @@
 </tr>
 <tr>
     <td><a href="https://github.com/Eddie02582/Algorithm/tree/master/Sort/Bubble%20Sort">Binary Search</a></td>
-    <td>O(<sub>log n)</td>
+    <td>O(log n)</td>
     <td>O(1)/O(log n)</td>
 </tr>
 
