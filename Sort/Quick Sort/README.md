@@ -1,7 +1,8 @@
 # Quick Sort 
 
+快速排序使用分治法(Divide and conquer)策略來把一個序列（list）分為較小和較大的2個子序列，然後遞迴地排序兩個子序列。<br>
+
 ## Algorithm 
-快速排序使用分治法（Divide and conquer）策略來把一個序列（list）分為較小和較大的2個子序列，然後遞迴地排序兩個子序列。<br>
 
 步驟
 <ul>
@@ -15,9 +16,7 @@
 
 ## Example 
 
-
 ## Python
-
 
 ``` python
 def quicksort(array):
