@@ -29,7 +29,7 @@ Explanation: There is no common prefix among the input strings.
 類似合併排序法,一次比較太多的話,有點難比較所以縮小問題,每次只比較2個
 
 
-<img src = "https://media.geeksforgeeks.org/wp-content/cdn-uploads/longest_common_prefix6.jpg"</img>
+<img src = "https://media.geeksforgeeks.org/wp-content/cdn-uploads/longest_common_prefix6.jpg"></img>
 
 
 
