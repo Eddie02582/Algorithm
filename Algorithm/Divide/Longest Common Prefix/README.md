@@ -28,7 +28,7 @@ Explanation: There is no common prefix among the input strings.
 
 類似合併排序法
 
-<img src = https://media.geeksforgeeks.org/wp-content/cdn-uploads/longest_common_prefix6.jpg</img>
+<img src = "https://media.geeksforgeeks.org/wp-content/cdn-uploads/longest_common_prefix6.jpg"</img>
 
 
 
