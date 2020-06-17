@@ -19,14 +19,22 @@ Example 1:
 Explanation: There is no common prefix among the input strings.
 ```
 
-這題為Leetcode 14.<a href = "https://leetcode.com/problems/longest-common-prefix/">Longest Common Prefix</a><br>
-解法可以<a href = "https://github.com/Eddie02582/Leetcode/blob/master/014_Longest%20Common%20Prefix.md">參考</a><br>使用排序比較陣列頭尾字串即可<br>
+這題為Leetcode 14.<a href = "https://leetcode.com/problems/maximum-subarray//">Maximum Subarray</a><br>
+解法可以<a href = "https://github.com/Eddie02582/Leetcode/blob/master/014_Longest%20Common%20Prefix.md">參考</a><br>使用動態規劃<br>
 這邊主要使用分治法解
 
 
 ## 分析
-
-類似合併排序法,一次比較太多的話,有點難比較所以縮小問題,每次只比較2個
+<ol>
+    <li>Divide the given array in two halves</li>
+    <li>Return the maximum of following three
+        <ol type="a">
+            <li>Maximum subarray sum in left half (Make a recursive call)</li>
+            <li>Maximum subarray sum in right half (Make a recursive call)</li>
+            <li>Maximum subarray sum such that the subarray</li>
+        </ol>    
+    </li>
+</ol>
 
 圖片取自於geeksforgeeks
 <img src = "https://media.geeksforgeeks.org/wp-content/cdn-uploads/longest_common_prefix6.jpg"></img>
@@ -36,35 +44,62 @@ Explanation: There is no common prefix among the input strings.
 ## Code
 
 ```python
-class Solution(object):
-    def longestCommonPrefix(self, strs):
-        if not strs:
-            return ""
-        if len(strs) == 1:
-            return strs[0]          
-        
-        def helper(str1,str2):
-            p = 0
-            s = ""
-            while p < len(str1) and  p <len(str2):
-                if str1[p] != str2[p]:
-                    break              
-                s += str1[p]
-                p += 1            
-            return s
-                
-        
-        mid = len(strs)//2
-        left = strs[:mid]
-        right = strs[mid:]
-        left = self.longestCommonPrefix(left)
-        right = self.longestCommonPrefix(right)
-        s = helper(left,right)
-        return s
-        
-
-sol = Solution()
-input = ["geeksforgeeks", "geeks", "geek", "geezer"]
-sol.longestCommonPrefix(input)
-
+# A Divide and Conquer based program 
+# for maximum subarray sum problem 
+  
+# Find the maximum possible sum in 
+# arr[] auch that arr[m] is part of it 
+def maxCrossingSum(arr, l, m, h) : 
+      
+    # Include elements on left of mid. 
+    sm = 0; left_sum = -10000
+      
+    for i in range(m, l-1, -1) : 
+        sm = sm + arr[i] 
+          
+        if (sm > left_sum) : 
+            left_sum = sm 
+      
+      
+    # Include elements on right of mid 
+    sm = 0; right_sum = -1000
+    for i in range(m + 1, h + 1) : 
+        sm = sm + arr[i] 
+          
+        if (sm > right_sum) : 
+            right_sum = sm 
+      
+  
+    # Return sum of elements on left and right of mid 
+    # returning only left_sum + right_sum will fail for [-2, 1] 
+    return max(left_sum + right_sum, left_sum, right_sum) 
+  
+  
+# Returns sum of maxium sum subarray in aa[l..h] 
+def maxSubArraySum(arr, l, h) : 
+      
+    # Base Case: Only one element 
+    if (l == h) : 
+        return arr[l] 
+  
+    # Find middle point 
+    m = (l + h) // 2
+  
+    # Return maximum of following three possible cases 
+    # a) Maximum subarray sum in left half 
+    # b) Maximum subarray sum in right half 
+    # c) Maximum subarray sum such that the  
+    #     subarray crosses the midpoint  
+    return max(maxSubArraySum(arr, l, m), 
+               maxSubArraySum(arr, m+1, h), 
+               maxCrossingSum(arr, l, m, h)) 
+              
+  
+# Driver Code 
+arr = [-2,1,-3,4,-1,2,1,-5,4]
+n = len(arr) 
+  
+max_sum = maxSubArraySum(arr, 0, n-1) 
+print("Maximum contiguous sum is ", max_sum) 
+  
 ```
