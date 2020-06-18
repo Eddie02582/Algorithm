@@ -9,12 +9,21 @@ GeeksforGeeks<a href = "https://www.geeksforgeeks.org/tiling-problem-using-divid
 以下圖片取自GeeksforGeeks
 
 棋盤覆蓋問題要求在2^k * 2^k 個方格組成的棋盤中，你給定任意一個特殊點，用一種方案實現對除該特殊點的棋盤實現全覆蓋。
-假設下面　8*8<br>
+以8*8為例<br>
 <img src="https://www.geeksforgeeks.org/wp-content/uploads/tiles2-1024x539.png" alt="tiles3" width="400" height="315">
 
-我們把化簡4　*　4並在補上特殊點
+我們把化簡4*4並在補上特殊點
 
 <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/tiles3.png" alt="tiles3" width="400" height="315">
+
+我們把化簡2*2並在補上特殊點
+
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/tiles4.png" alt="tiles3" width="400" height="315">
+
+最終結果
+
+<img src="https://www.geeksforgeeks.org/wp-content/uploads/tiles5-1024x793.png" alt="tiles3" width="400" height="315">
+
 ## Code
 
 ```python
