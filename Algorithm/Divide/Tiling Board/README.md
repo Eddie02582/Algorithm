@@ -9,6 +9,9 @@ GeeksforGeeks<a href = "https://www.geeksforgeeks.org/tiling-problem-using-divid
 以下圖片取自GeeksforGeeks
 
 棋盤覆蓋問題要求在2^k * 2^k 個方格組成的棋盤中，你給定任意一個特殊點，用一種方案實現對除該特殊點的棋盤實現全覆蓋。
+
+## 分析
+
 以8*8為例<br>
 <img src="https://www.geeksforgeeks.org/wp-content/uploads/tiles2-1024x539.png" alt="tiles3" width="400" height="315">
 
@@ -20,9 +23,22 @@ GeeksforGeeks<a href = "https://www.geeksforgeeks.org/tiling-problem-using-divid
 
 <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/tiles4.png" alt="tiles3" width="400" height="315">
 
-最終結果
+所有都補上特殊點
 
 <img src="https://www.geeksforgeeks.org/wp-content/uploads/tiles5-1024x793.png" alt="tiles3" width="400" height="315">
+
+
+實現
+
+解決方案就是利用分治法，將方形棋盤分成4部分，如果該特殊點在某一部分，我們就去遞歸他，如果不在某一部分，我們假設一個點為特殊點，同樣遞歸下去<br>
+
+    左上角的子棋盤（若不存在特殊方格）：則將該子棋盤右下角的那個方格假設為特殊方格；<br>
+    右上角的子棋盤（若不存在特殊方格）：則將該子棋盤左下角的那個方格假設為特殊方格；<br>
+    左下角的子棋盤（若不存在特殊方格）：則將該子棋盤右上角的那個方格假設為特殊方格；<br>
+    右下角的子棋盤（若不存在特殊方格）：則將該子棋盤左上角的那個方格假設為特殊方格；<br>
+
+
+
 
 ## Code
 
