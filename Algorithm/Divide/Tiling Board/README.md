@@ -14,9 +14,7 @@ GeeksforGeeks<a href = "https://www.geeksforgeeks.org/tiling-problem-using-divid
 
 我們把化簡4　*　4並在補上特殊點
 
-<img src = "https://media.geeksforgeeks.org/wp-content/cdn-uploads/tiles3.png"　width="400" height="315">
-
-<img　src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/tiles3.png" alt="tiles3" width="400" height="315">
+<img class="  wp-image-134416 aligncenter" src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/tiles3.png" alt="tiles3" width="400" height="315">
 ## Code
 
 ```python
