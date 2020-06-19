@@ -28,7 +28,7 @@ Example
     <li><a href = "https://github.com/Eddie02582/Algorithm/tree/master/Sort/Quick%20Sort">Quick Sort</a></li>
     <li><a href = "">線性時間選擇</a></li>
     <li><a href = "">最接近點對問題</a></li>
-    <li><a href = "">迴圈賽事日程表</a></li> 
+    <li><a href = "https://github.com/Eddie02582/Algorithm/tree/master/Algorithm/Divide/Loop%20Schedule">迴圈賽事日程表</a></li> 
     <li><a href = "">漢諾塔</a></li>      
 </ul>    
 
