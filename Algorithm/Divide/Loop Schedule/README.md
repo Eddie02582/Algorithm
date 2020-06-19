@@ -17,7 +17,7 @@
 1.將所有的選手分為兩半，n個選手的比賽日程表可以通過為n/2個選手設計的比賽日程表來決定<br>
 2、遞歸地用對選手進行分割，直到只剩下2個選手時，只要讓這2個選手進行比賽就可<br>
 
-圖片取自於geeksforgeeks
+
 <img src = "https://github.com/Eddie02582/Algorithm/blob/master/Algorithm/Divide/Loop%20Schedule/1.png">
 
 <img src = "https://github.com/Eddie02582/Algorithm/blob/master/Algorithm/Divide/Loop%20Schedule/2.png">
