@@ -15,9 +15,6 @@ class Solution():
                 copy(m,m + i ,0,i,m)
                 copy(m,i,0,m + i,m)
             m *= 2
-        
-        for p in res:
-            print (p)
         return res    
 
         
