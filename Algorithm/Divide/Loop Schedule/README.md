@@ -18,9 +18,11 @@
 2、遞歸地用對選手進行分割，直到只剩下2個選手時，只要讓這2個選手進行比賽就可<br>
 
 圖片取自於geeksforgeeks
-<img src = "https://media.geeksforgeeks.org/wp-content/cdn-uploads/longest_common_prefix6.jpg"></img>
+<img src = "https://github.com/Eddie02582/Algorithm/blob/master/Algorithm/Divide/Loop%20Schedule/1.png">
 
+<img src = "https://github.com/Eddie02582/Algorithm/blob/master/Algorithm/Divide/Loop%20Schedule/2.png">
 
+<img src = "https://github.com/Eddie02582/Algorithm/blob/master/Algorithm/Divide/Loop%20Schedule/3.png">
 
 ## Code
 
