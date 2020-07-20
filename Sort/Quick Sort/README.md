@@ -36,6 +36,71 @@ def quicksort(array):
 
 ## Example  (Inplace)
 
+雙邊循環法
+``` python
+def quickSort_twoPointer(arr,startIndex,endIndex):            
+    def partition(arr, startIndex,endIndex):  
+        pivot,left,right = arr[startIndex],startIndex,endIndex
+        while left != right:
+            while left < right and arr[right] > pivot:
+                right -= 1
+            while left < right and arr[left] <= pivot:
+                left += 1
+            if left < right:
+                arr[left],arr[right] = arr[right],arr[left]
+        
+        arr[startIndex] = arr[left]
+        arr[left] = pivot
+        return left
+        
+    if startIndex >= endIndex:
+        return 
+    pivotIndex = partition(arr, startIndex, endIndex)
+    quickSort_twoPoint(arr, startIndex, pivotIndex - 1)
+    quickSort_twoPoint(arr, pivotIndex + 1, endIndex)   
+
+``` 
+單邊循環法
+
+
+``` python
+def quickSort_Pointer(arr,startIndex,endIndex):            
+    def partition(arr, startIndex,endIndex):  
+        pivot,mark = arr[startIndex],startIndex
+        for i in range(startIndex + 1,endIndex + 1):            
+            if arr[i] < pivot:
+                mark += 1
+                arr[mark],arr[i] = arr[i],arr[mark]
+        
+        arr[startIndex] = arr[mark]
+        arr[mark] = pivot
+        return mark
+        
+    if startIndex >= endIndex:
+        return 
+    pivotIndex = partition(arr, startIndex, endIndex)
+    quickSort_Pointer(arr, startIndex, pivotIndex - 1)
+    quickSort_Pointer(arr, pivotIndex + 1, endIndex)   
+``` 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
