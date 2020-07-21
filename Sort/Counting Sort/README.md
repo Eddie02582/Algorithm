@@ -24,43 +24,97 @@
 
 
 ``` python
+def counting(array,max_value):
+    counts = [0] * max_value
+    
+    for n in array:
+       counts[n] += 1 
+    result = []
+    for i,count in enumerate(counts):
+        j = 0 
+        while j < count:
+            result.append(i)
+            j += 1   
+    return result
+```
 
-def insert_sort(array):
-    count = 0 
-    for i in range(1,len(array)): 
-        n = array[i]
-        j = i - 1
+自己找範圍
 
-        while j >= 0 and n < array[j]:            
-            array [j + 1] = array[j]
-            j = j -1        
-        array [j + 1] = n         
-    return array   
+``` python
+def counting(array):
+    max_value ,min_value= array[0],array[0]
+    
+    for n in array:
+        if n > max_value:
+            max_value = n
+        if n < min_value:
+            min_value = n
+            
+    k = max_value - min_value + 1
+    counts = [0] * k
+    
+    for n in array:
+       counts[n - min_value] += 1 
+    result = []
+  
+    for i in range(len(counts)): 
+        while counts[i] > 0:
+            result.append(i + min_value)
+            counts[i] -= 1   
+    return result
+```
+
+在同値的情況下,想按照原本順序排
+
+``` python
+def counting(array):
+    # find Max and Min
+    maxValue ,minValue= array[0],array[0]    
+    for n in array:
+        if n > max_value:
+            max_value = n
+        if n < min_value:
+            min_value = n
+    
+    d = maxValue - min_value
+    
+    countArray = [0] * (d + 1)
+    
+    #count element numbers
+    
+    for n in array:
+       countArray[n - min_value] += 1  
+       
+    for i in range(1,len(counts)):
+       countArray[i] += countArray[i - 1]          
+       
+    sortedArray = []     
+    
+    for i in range(len(array) - 1, - 1,-1): 
+        sortedArray[countArray[array[i]- min] - 1] = array[i]
+        countArray[array[i]-min] -= 1
+    return sortedArray
 ```
 
 
-## C sharp
 
-``` csharp
-class Sort
-{
-    public int[] select_sort(int[] arr)
-    {
-        int index = 0 ;
-        int temp = 0;
-        for (int i = 0; i < arr.Length; i++)
-        {
-            j = i -1 ;
-            int n = array[i]
-            while j >= 0 and array[j] > n:
-                array[j + 1] = array[j]
-                j -= 1
-            array[j + 1] = n
-        }
-        return arr;
-    }       
-}
-```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
