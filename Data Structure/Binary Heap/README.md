@@ -154,7 +154,7 @@
  
 從父節點找到子節點,假設父節點的下標是parent,那麼左子節點 2×parent+1；右子節點下標就是2×parent+2。
 
-```
+```python 
 class Solution(object):
     def upAdjust(self, array):
         """
