@@ -139,7 +139,84 @@
     /  \ 
    9    10      
   
-   
+# 代碼實現  
+
+          1
+        /   \
+       3      2
+      / \    / \
+     6   5  7   8
+    / \  
+   9  10 
+
+二叉堆的存儲方式是順序存儲在陣列
+=> [1,3,2,6,5,7,8,9,10]
+ 
+從父節點找到子節點,假設父節點的下標是parent,那麼左子節點 2×parent+1；右子節點下標就是2×parent+2。
+
+```
+class Solution(object):
+    def upAdjust(self, array):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        childIndex = len(array) - 1
+        parentIndex = (childIndex - 1)//2
+        temp = array[childIndex]
+        while childIndex > 0 and temp < array[parentIndex]:
+            array[childIndex] = array[parentIndex]
+            #update child
+            childIndex = parentIndex
+            #update parent
+            parentIndex = (childIndex - 1)// 2
+        
+        array[childIndex] = temp
+        
+        #return array
+            
+    def downAdjust(self, arry,parentIndex,length):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        temp = arry[parentIndex]
+        childIndex = 2 * parentIndex + 1      
+        
+        while childIndex < length:
+            if childIndex + 1 < length and array[childIndex + 1] < array[childIndex]:
+                childIndex += 1
+            if temp <= array[childIndex]:
+                break
+            array[parentIndex] = array[childIndex]
+            parentIndex = childIndex
+            childIndex = 2 * parentIndex + 1
+            #childIndex = 2 * childIndex + 1
+        
+        array[parentIndex] = temp
+    
+    def buildHeap(self,array):
+        start = (len(array) - 2)//2
+        for i in range(start, -1 , -1):
+            self.downAdjust(array,i,len(array))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    
    
    
