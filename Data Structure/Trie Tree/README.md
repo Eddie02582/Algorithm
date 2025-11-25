@@ -1,51 +1,57 @@
-# 🌳 字典樹 (Trie)
+# 🌳 字典樹 Trie
 
-字典樹（Trie）是一種樹型資料結構，用於儲存 **字串集合**，常用於：
+字典樹 Trie 是樹型結構，支援：
 
-- 字典查詢（前綴匹配）
+- 字串集合管理
+- 前綴匹配
 - 自動補全
-- 單詞統計
-- 字串搜索優化
+- 多種字串查詢優化
+- 支援通配符、加權計算
 
 ---
 
-## 📌 Trie 的結構
+## Trie 範例結構
 
-- 每個節點代表字母或字元
-- 路徑從根到節點代表字串前綴
-- 可快速查詢某個字串是否存在，或某個前綴是否存在
-
-範例：
-
-假設有字串集合 `["apple","app","bat","ball"]`：
+給定字串集合：
 
 ```
-        root
-       /    \
-      a      b
-      |      |
-      p      a
-      |      |
-      p      l
-      |      |
-      l      l
-      |      |
-      e      (end)
-     (end)
+["apple","app","bat","ball","batter"]
 ```
 
+Trie 結構：
+
+```
+         root
+       /      \
+      a        b
+      |        |
+      p        a
+      |        |
+      p        l
+      | \       \
+      l  e       t
+      |           \
+      e            t
+(end)           (end)
+```
+
+- 每條路徑代表字串前綴
+- is_end 標記字串結尾
+
 ---
 
-## 📌 Trie 基本操作
+## 基本操作
 
-- 插入字串（Insert）
-- 查詢字串是否存在（Search）
-- 查詢是否有特定前綴（StartsWith）
-- 可擴展功能：計算出現次數、刪除字串等
+- **Insert(word)**：插入字串
+- **Search(word)**：查詢完整字串
+- **StartsWith(prefix)**：查詢前綴
+- **Delete(word)**（進階）：刪除字串
+- **CountWords(prefix)**（進階）：計算前綴出現次數
+- **Wildcard Search**（進階）：支援 '.' 或 '?' 通配符
 
 ---
 
-## Python Trie 範例
+## Python Trie 基礎版本
 
 ```python
 class TrieNode:
@@ -84,63 +90,129 @@ class Trie:
 
 ---
 
-## 📌 使用範例
+## 進階功能：計算前綴出現次數
 
 ```python
-trie = Trie()
+class TrieNodeCount:
+    def __init__(self):
+        self.children = {}
+        self.is_end = False
+        self.count = 0  # 記錄前綴次數
+
+class TrieCount:
+    def __init__(self):
+        self.root = TrieNodeCount()
+
+    def insert(self, word: str):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNodeCount()
+            node = node.children[char]
+            node.count += 1
+        node.is_end = True
+
+    def countPrefix(self, prefix: str) -> int:
+        node = self.root
+        for char in prefix:
+            if char not in node.children:
+                return 0
+            node = node.children[char]
+        return node.count
+```
+
+---
+
+## 進階功能：支援通配符搜尋
+
+```python
+class TrieWildcard:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word: str):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.is_end = True
+
+    def search(self, word: str) -> bool:
+        def dfs(node, i):
+            if i == len(word):
+                return node.is_end
+            if word[i] == '.':
+                for child in node.children.values():
+                    if dfs(child, i+1):
+                        return True
+                return False
+            if word[i] in node.children:
+                return dfs(node.children[word[i]], i+1)
+            return False
+        return dfs(self.root, 0)
+```
+
+---
+
+## 使用範例
+
+```python
+trie = TrieWildcard()
 trie.insert("apple")
 trie.insert("app")
 trie.insert("bat")
 trie.insert("ball")
 
 print(trie.search("apple"))  # True
-print(trie.search("app"))    # True
-print(trie.search("ap"))     # False
-print(trie.startsWith("ap")) # True
-print(trie.startsWith("ba")) # True
-print(trie.startsWith("cat"))# False
+print(trie.search("a..le"))  # True
+print(trie.search("b.t"))    # True
+print(trie.search("b..l"))   # True
+print(trie.search("cat"))    # False
+
+trie_count = TrieCount()
+trie_count.insert("apple")
+trie_count.insert("app")
+trie_count.insert("apex")
+print(trie_count.countPrefix("ap"))  # 3
 ```
 
 ---
 
-## 📌 Trie 的特點
+## Trie 常用 LeetCode 題目
 
-- 適合大量字串查詢
-- 插入、查詢時間複雜度與字串長度 L 有關：O(L)
-- 空間消耗大於 Hash Map，但支援前綴操作
-- 可進一步改良成 **壓縮字典樹（Radix Trie）** 或 **AC自動機**
-
----
-
-## 📌 LeetCode 常見 Trie 題目
-
-| 題號 | 題名 | 難度 | 說明 |
+| 題號 | 題名 | 難度 | 功能 |
 |------|------|------|------|
-| 208 | Implement Trie | Medium | 基本 Trie 操作 |
+| 208 | Implement Trie | Medium | 基本 Trie |
 | 211 | Add and Search Word | Medium | 支援 '.' 通配符 |
-| 648 | Replace Words | Medium | Trie + 前綴匹配 |
+| 648 | Replace Words | Medium | 前綴匹配 |
 | 212 | Word Search II | Hard | Trie + DFS |
 | 677 | Map Sum Pairs | Medium | Trie + sum 記錄 |
+| 745 | Prefix and Suffix Search | Hard | 雙向 Trie |
+| 500 | Keyboard Row | Easy | Trie 應用 |
+| 1804 | Implement Trie II | Medium | 計數 + 前綴搜尋 |
 
 ---
 
-## 📌 Trie vs HashMap
+## Trie vs HashMap
 
 | 特性 | Trie | HashMap/Set |
 |------|------|-------------|
 | 插入 | O(L) | O(L) |
 | 查詢 | O(L) | O(L) |
-| 前綴查詢 | ✔ | ❌（需額外處理） |
+| 前綴查詢 | ✔ | ❌ 需遍歷 |
+| 通配符搜尋 | ✔ | ❌ |
 | 空間消耗 | 高 | 中 |
-| 適用場景 | 前綴匹配、自動補全、單詞統計 | 簡單字串查找 |
+| 適用場景 | 前綴匹配、自動補全、單詞統計 | 單詞查找 |
 
 ---
 
-## 🎯 Trie 學習建議
+## 學習建議
 
-1. 實作基本 Trie（Insert/Search/StartsWith）
-2. 練習前綴匹配題目（Replace Words, Autocomplete）
-3. 擴展進階功能（AC 自動機、壓縮 Trie）
-4. 將 Trie 與 DFS/DP 結合解 LeetCode Hard 題目
+1. 基礎 Trie（Insert/Search/StartsWith）
+2. 前綴計數/自動補全
+3. 通配符搜尋
+4. LeetCode Hard 題目：Trie + DFS / Trie + DP
+5. 進一步：壓縮 Trie / AC 自動機
 
-
+---
