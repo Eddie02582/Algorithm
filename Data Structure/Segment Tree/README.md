@@ -1,177 +1,203 @@
-## 🌳 Segment Tree (線段樹) 筆記與實現
+# 🌲 線段樹 (Segment Tree) — 完整學習指南（Python + LeetCode）
 
-Segment Tree 是一種高效的**區間查詢與更新**的二元樹資料結構。它允許我們在 $O(\log n)$ 的時間複雜度內完成對陣列區間的聚合查詢（如求和、最大值、最小值）和單點/區間更新。
+線段樹是一種支援 **動態更新 + 區間查詢** 並保持 **O(log n)** 時間複雜度的資料結構，常用於：
 
-### 📌 核心概念 (Core Concepts)
+- 區間總和 (Range Sum)
+- 區間最小值/最大值
+- 區間更新（Lazy Propagation）
 
-| 節點類型 | 區間表示 | 資訊儲存 |
-| :--- | :--- | :--- |
-| **根節點 (Root)** | 代表整個原始陣列 $[0, n-1]$。 | 整個區間的聚合值。 |
-| **內部節點 (Internal)** | 代表一個子區間 $[L, R]$。 | 其左右子節點聚合值的組合。 |
-| **葉節點 (Leaf)** | 代表原始陣列中的單個元素 $[i, i]$。 | 原始陣列 $A[i]$ 的值。 |
+---
 
-每個內部節點 $[L, R]$ 的子節點劃分如下：
-* **左子節點 (Left Child):** 代表區間 $[L, M]$。
-* **右子節點 (Right Child):** 代表區間 $[M+1, R]$。
-* 其中 $M = \lfloor (L+R)/2 \rfloor$。
+## 📌 為什麼需要線段樹？
 
-### 💻 程式碼實現：區間和 (Python Implementation: Range Sum)
+給定陣列：
 
-以下是一個 Python 類別實現，用於解決 **單點更新 (Point Update)** 和 **區間求和 (Range Sum Query)** 問題。
+```
+[2, 4, 5, 7, 8, 9, 12]
+```
+
+你要執行：
+
+| 操作 | 範例 |
+|------|------|
+| 查詢區間和 | sum(1..5) |
+| 更新 | arr[3] = 20 |
+
+效率比較：
+
+| 方法 | 區間查詢 | 更新 |
+|------|----------|------|
+| 暴力 | O(n) | O(1) |
+| 前綴和 Prefix Sum | O(1) | ❌ 不支援 |
+| Fenwick Tree (BIT) | O(log n) | O(log n) |
+| **Segment Tree** | **O(log n)** | **O(log n)** |
+
+---
+
+## 📌 線段樹結構示意
+
+陣列 `[2,4,5,7,8,9,12]` → 區間總和：
+
+```
+                [0,6]=47
+              /              \
+        [0,3]=18            [4,6]=29
+        /      \            /       \
+  [0,1]=6   [2,3]=12   [4,5]=17   [6,6]=12
+  /    \
+[0]=2 [1]=4
+```
+
+---
+
+## 📌 Segment Tree Python 版本（支援查詢 + 更新）
 
 ```python
 class SegmentTree:
-    """
-    Segment Tree implementation for Range Sum Query and Point Update.
-    Time Complexity:
-    - Build: O(n)
-    - Update: O(log n)
-    - Query: O(log n)
-    """
-    def __init__(self, nums: list[int]):
-        """
-        Initializes the Segment Tree.
-        :param nums: The original array.
-        """
+    def __init__(self, nums):
         self.n = len(nums)
-        # Tree array size is typically 4 * n for safety.
-        self.tree = [0] * (4 * self.n) 
-        self._nums = nums
-        if self.n > 0:
-            self._build(0, 0, self.n - 1)
+        self.tree = [0] * (4 * self.n)
+        self.build(nums, 0, 0, self.n - 1)
 
-    # --- 1. Build Operation ---
+    def build(self, nums, index, l, r):
+        if l == r:
+            self.tree[index] = nums[l]
+            return nums[l]
+        mid = (l + r) // 2
+        left_sum = self.build(nums, index*2+1, l, mid)
+        right_sum = self.build(nums, index*2+2, mid+1, r)
+        self.tree[index] = left_sum + right_sum
+        return self.tree[index]
 
-    def _build(self, tree_index, start, end):
-        """
-        Recursively builds the segment tree.
-        :param tree_index: Current node index in self.tree.
-        :param start: Start index of the current node's range.
-        :param end: End index of the current node's range.
-        """
-        if start == end:
-            # Leaf node: Store the value from the original array.
-            self.tree[tree_index] = self._nums[start]
+    def update(self, pos, value):
+        self._update(0, 0, self.n-1, pos, value)
+
+    def _update(self, index, l, r, pos, value):
+        if l == r:
+            self.tree[index] = value
             return
-
-        mid = start + (end - start) // 2
-        left_child = 2 * tree_index + 1
-        right_child = 2 * tree_index + 2
-
-        # Recursively build children
-        self._build(left_child, start, mid)
-        self._build(right_child, mid + 1, end)
-
-        # Internal node: Aggregate (Sum) the children's results.
-        self.tree[tree_index] = self.tree[left_child] + self.tree[right_child]
-
-    # --- 2. Update Operation (Point Update) ---
-
-    def update(self, index: int, val: int):
-        """
-        Updates the element at the given index and updates the tree.
-        :param index: Index of the element to update.
-        :param val: The new value.
-        """
-        self._update(0, 0, self.n - 1, index, val)
-
-    def _update(self, tree_index, start, end, index, val):
-        if start == end:
-            # Found the leaf node, update the value.
-            self.tree[tree_index] = val
-            return
-
-        mid = start + (end - start) // 2
-        left_child = 2 * tree_index + 1
-        right_child = 2 * tree_index + 2
-
-        if index <= mid:
-            # The target index is in the left child's range.
-            self._update(left_child, start, mid, index, val)
+        mid = (l + r) // 2
+        if pos <= mid:
+            self._update(index*2+1, l, mid, pos, value)
         else:
-            # The target index is in the right child's range.
-            self._update(right_child, mid + 1, end, index, val)
+            self._update(index*2+2, mid+1, r, pos, value)
+        self.tree[index] = self.tree[index*2+1] + self.tree[index*2+2]
 
-        # Backtrack: Update the current node's value based on children.
-        self.tree[tree_index] = self.tree[left_child] + self.tree[right_child]
+    def query(self, ql, qr):
+        return self._query(0, 0, self.n-1, ql, qr)
 
-    # --- 3. Query Operation (Range Sum) ---
-
-    def query(self, L: int, R: int) -> int:
-        """
-        Queries the sum of the range [L, R].
-        :param L: Query range left boundary.
-        :param R: Query range right boundary.
-        :return: The sum of elements in the range [L, R].
-        """
-        return self._query(0, 0, self.n - 1, L, R)
-
-    def _query(self, tree_index, start, end, L, R):
-        # Case 1: Current node range [start, end] is COMPLETELY INSIDE target range [L, R]
-        if L <= start and end <= R:
-            return self.tree[tree_index]
-
-        # Case 2: Current node range [start, end] has NO OVERLAP with target range [L, R]
-        if start > R or end < L:
-            return 0 # Return identity element for sum (0)
-
-        # Case 3: PARTIAL OVERLAP, recursively query children
-        mid = start + (end - start) // 2
-        left_child = 2 * tree_index + 1
-        right_child = 2 * tree_index + 2
-
-        # Sum the results from the children
-        sum_left = self._query(left_child, start, mid, L, R)
-        sum_right = self._query(right_child, mid + 1, end, L, R)
-
-        return sum_left + sum_right
-
-
-# --- Example Usage ---
-# nums = [1, 3, 5, 7, 9]
-# st = SegmentTree(nums)
-
-# # Initial Query: sumRange(1, 4) -> 3 + 5 + 7 + 9 = 24
-# print(f"Query [1, 4] initial sum: {st.query(1, 4)}") 
-
-# # Update: update(2, 6) -> nums becomes [1, 3, 6, 7, 9]
-# st.update(2, 6) 
-
-# # Updated Query: sumRange(1, 4) -> 3 + 6 + 7 + 9 = 25
-# print(f"Query [1, 4] updated sum: {st.query(1, 4)}")
-
+    def _query(self, index, l, r, ql, qr):
+        if ql <= l and r <= qr:
+            return self.tree[index]
+        if r < ql or qr < l:
+            return 0
+        mid = (l + r) // 2
+        return self._query(index*2+1, l, mid, ql, qr) + \
+               self._query(index*2+2, mid+1, r, ql, qr)
 ```
-### 🧠 LeetCode 範例：307. Range Sum Query - Mutable
 
-#### 題目連結 (Link)
-[LeetCode 307. Range Sum Query - Mutable](https://leetcode.com/problems/range-sum-query-mutable/)
+---
 
-#### 題目要求 (Problem Statement)
-實現一個 `NumArray` 類別，支援以下操作：
-1.  `NumArray(int[] nums)`: 初始化物件。
-2.  `void update(int index, int val)`: 將 `nums[index]` 更新為 `val`。
-3.  `int sumRange(int left, int right)`: 返回 `nums` 區間 `[left, right]` 的總和。
-
-#### 解決方案 (Solution)
+## 📌 使用範例
 
 ```python
-class NumArray:
-    """
-    LeetCode 307 Solution using Segment Tree.
-    """
-    def __init__(self, nums: list[int]):
-        # The SegmentTree class (defined above) must be accessible or defined within this scope 
-        # for this LeetCode solution to work.
-        self.seg_tree = SegmentTree(nums)
+arr = [2,4,5,7,8,9,12]
+seg = SegmentTree(arr)
 
-    def update(self, index: int, val: int) -> None:
-        # Delegate the update operation to the Segment Tree.
-        self.seg_tree.update(index, val)
-
-    def sumRange(self, left: int, right: int) -> int:
-        # Delegate the query operation to the Segment Tree.
-        return self.seg_tree.query(left, right)
-
+print(seg.query(1, 5))  # 33
+seg.update(2, 10)
+print(seg.query(1, 5))  # 38
 ```
+
+---
+
+## 📌 Lazy Propagation — 區間修改優化
+
+Lazy Propagation 用於解決：
+
+❌ 每次對範圍更新（ex: +5）就必須推到底 → O(n)
+
+✔ Lazy 樹允許「先記帳，之後需要時再更新」。
+
+---
+
+### Lazy Segment Tree Python 程式
+
+```python
+class LazySegmentTree:
+    def __init__(self, nums):
+        n = len(nums)
+        self.n = n
+        self.tree = [0] * (4 * n)
+        self.lazy = [0] * (4 * n)
+        self.build(nums, 0, 0, n - 1)
+
+    def build(self, nums, idx, l, r):
+        if l == r:
+            self.tree[idx] = nums[l]
+            return
+        mid = (l+r)//2
+        self.build(nums, idx*2+1, l, mid)
+        self.build(nums, idx*2+2, mid+1, r)
+        self.tree[idx] = self.tree[idx*2+1] + self.tree[idx*2+2]
+
+    def push(self, idx, l, r):
+        if self.lazy[idx] != 0:
+            mid = (l+r)//2
+            self.tree[idx*2+1] += (mid-l+1) * self.lazy[idx]
+            self.tree[idx*2+2] += (r-mid) * self.lazy[idx]
+            self.lazy[idx*2+1] += self.lazy[idx]
+            self.lazy[idx*2+2] += self.lazy[idx]
+            self.lazy[idx] = 0
+
+    def update_range(self, idx, l, r, ql, qr, val):
+        if ql <= l and r <= qr:
+            self.tree[idx] += (r-l+1) * val
+            self.lazy[idx] += val
+            return
+        if r < ql or qr < l:
+            return
+        self.push(idx, l, r)
+        mid = (l+r)//2
+        self.update_range(idx*2+1, l, mid, ql, qr, val)
+        self.update_range(idx*2+2, mid+1, r, ql, qr, val)
+        self.tree[idx] = self.tree[idx*2+1] + self.tree[idx*2+2]
+
+    def query(self, idx, l, r, ql, qr):
+        if ql <= l and r <= qr:
+            return self.tree[idx]
+        if r < ql or qr < l:
+            return 0
+        self.push(idx, l, r)
+        mid = (l+r)//2
+        return self.query(idx*2+1, l, mid, ql, qr) + \
+               self.query(idx*2+2, mid+1, r, ql, qr)
+```
+
+---
+
+## 📌 LeetCode 相關題目
+
+| 題號 | 題名 | 難度 | 是否推薦用線段樹 |
+|------|------|--------|----------------|
+| 307 | Range Sum Query - Mutable | Medium | ⭐ 必學 |
+| 308 | Range Sum Query 2D - Mutable | Hard | ✔ 2D Segment Tree |
+| 715 | Range Module | Hard | ✔ Lazy Propagation |
+| 1094 | Car Pooling | Medium | ✔ 可選 |
+| 732 | My Calendar III | Hard | ⭐ Segment Tree / Map Sweep |
+
+---
+
+## 📌 Segment Tree vs Fenwick Tree
+
+| 特性 | Segment Tree | Fenwick Tree (BIT) |
+|------|--------------|------------------|
+| 區間查詢 | ✔ | ✔ |
+| 單點更新 | ✔ | ✔ |
+| 區間更新 | ✔（Lazy Propagation） | ⚠ 有難度 |
+| 支援 min/max 等自定義功能 | ✔ | ❌ 不適合 |
+| 記憶體需求 | 高 | 低 |
+
+---
 
 
