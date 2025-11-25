@@ -1,4 +1,4 @@
-# 🌲 線段樹 (Segment Tree) — 完整學習指南（Python + LeetCode）
+# 🌲 線段樹 (Segment Tree)
 
 線段樹是一種支援 **動態更新 + 區間查詢** 並保持 **O(log n)** 時間複雜度的資料結構，常用於：
 
