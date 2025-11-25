@@ -140,7 +140,7 @@ class SegmentTree:
 # # Updated Query: sumRange(1, 4) -> 3 + 6 + 7 + 9 = 25
 # print(f"Query [1, 4] updated sum: {st.query(1, 4)}")
 
-
+```
 ### 🧠 LeetCode 範例：307. Range Sum Query - Mutable
 
 #### 題目連結 (Link)
@@ -172,6 +172,6 @@ class NumArray:
         # Delegate the query operation to the Segment Tree.
         return self.seg_tree.query(left, right)
 
-
+```
 
 
